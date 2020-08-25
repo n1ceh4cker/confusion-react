@@ -15,21 +15,20 @@ const RenderDish = ({ dish })=>{
 }
                              
 const RenderComments = ({ comments }) =>{
+        const commentList = comments.map(comment =>{
+            return(
+            <li key={comment.id}>
+                <div className="pb-3">
+                    {comment.comment}
+                </div>
+                <div className="pb-3">
+                    -- {comment.author}, {new Intl.DateTimeFormat('en-us', {year: 'numeric', month: 'short', day:'2-digit'}).format(new Date(Date.parse(comment.date)))}
+                </div>
+            </li>)
+        })
         return(       
             <ul className="list-unstyled">
-            {
-                comments.map(comment =>{
-                    return(
-                    <li key={comment.id}>
-                        <div className="pb-3">
-                            {comment.comment}
-                        </div>
-                        <div className="pb-3">
-                            -- {comment.author}, {new Intl.DateTimeFormat('en-us', {year: 'numeric', month: 'short', day:'2-digit'}).format(new Date(Date.parse(comment.date)))}
-                        </div>
-                    </li>)
-                })
-            }
+                {commentList}
             </ul>       
         )
     }
