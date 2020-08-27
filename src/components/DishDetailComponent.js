@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Card, CardImg, CardTitle, CardBody, CardText, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody, Row, Label } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { LocalForm, Control, Errors } from 'react-redux-form'
+import Loading from './LoadingComponent'
 
 const required = val => val && val.length
 const maxlength = len => val => !(val) || (val.length <= len)
@@ -103,7 +104,30 @@ const RenderComments = ({ comments, addComment, dishId }) =>{
             </React.Fragment>    
         )
     }
-const DishDetail = ({ dish, comments, addComment }) =>{
+const DishDetail = ({ dish, comments, addComment, isLoading, errMsg }) =>{
+    if(isLoading){
+        return(
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <Loading />
+                    </div>
+                </div>
+            </div>
+        )
+    }
+    else if(errMsg){
+        return(
+            <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                        <h4>{errMsg}</h4>
+                    </div>
+                </div>
+            </div>
+        )
+    }     
+    else
         return (
             <div className="container">
                 <div className="row">
