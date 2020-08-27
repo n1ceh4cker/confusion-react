@@ -3,10 +3,9 @@ import './App.css';
 import Main from './components/MainComponent';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { reducerMain, initialState } from './redux/reducer';
+import { ConfigureStore } from './redux/configureStore';
 
-const store = createStore(reducerMain, initialState)
+const store = ConfigureStore()
 class App extends Component{
   render(){
     return (
