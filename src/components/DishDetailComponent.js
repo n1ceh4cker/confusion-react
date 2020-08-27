@@ -19,7 +19,7 @@ class CommentForm extends Component {
         })
     }
     handleSubmit = (values) =>{
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment)
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment)
     }
     render() {
         return (
@@ -83,7 +83,7 @@ const RenderDish = ({ dish })=>{
         )
 }
                              
-const RenderComments = ({ comments, addComment, dishId }) =>{
+const RenderComments = ({ comments, postComment, dishId }) =>{
         const commentList = comments.map(comment =>{
             return(
             <li key={comment.id}>
@@ -101,11 +101,11 @@ const RenderComments = ({ comments, addComment, dishId }) =>{
                 <ul className="list-unstyled">
                     {commentList}
                 </ul>     
-                <CommentForm addComment={addComment} dishId={dishId} />    
+                <CommentForm postComment={postComment} dishId={dishId} />    
             </React.Fragment>    
         )
     }
-const DishDetail = ({ dish, comments, addComment, isLoading, errMsg }) =>{
+const DishDetail = ({ dish, comments, postComment, isLoading, errMsg }) =>{
     if(isLoading){
         return(
             <div className="container">
@@ -147,7 +147,7 @@ const DishDetail = ({ dish, comments, addComment, isLoading, errMsg }) =>{
                     </div>
                     <div className="col-12 col-md-5 m-1">
                         <RenderComments comments={comments} 
-                            addComment={addComment}
+                            postComment={postComment}
                             dishId={dish.id} />
                     </div>
                 </div>
