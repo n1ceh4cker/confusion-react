@@ -176,7 +176,10 @@ class Contact extends Component {
                             <FormGroup row>
                                 <Label htmlFor="feedback" md={2}>Your Feedback</Label>
                                 <Col md={10}>
-                                    <textarea class="form-control" name="feedback" id="feedback" rows="12"></textarea>
+                                    <Input type="textarea" name="feedback" id="feedback" 
+                                    rows="12"
+                                    value={this.state.feedback}
+                                    onChange={this.handleInputChange} />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
